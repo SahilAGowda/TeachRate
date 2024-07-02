@@ -16,14 +16,19 @@ function generateTable(event) {
 
     const name = document.querySelector('.input-box input[placeholder="Name of Student"]').value;
     const semester = document.querySelector('.input-box input[placeholder="Semester"]').value;
-    
+
     if (!name || !semester) {
         alert("Please enter both name and semester.");
         return;
     }
 
+    if (semester != 4) {
+        alert("This feature is only available for semester 4.");
+        return;
+    }
+
     const subjects = ["Analysis and Design of Algorithm", "Microcontroller", "DBMS", "Graph Theory", "Biology"];
-    
+
     let tableHtml = `
         <table>
             <thead>
@@ -41,11 +46,11 @@ function generateTable(event) {
     subjects.forEach((subject, index) => {
         tableHtml += `
             <tr>
-            <td>${name}</td>
-            <td>${semester}</td>
-            <td>${subject}</td>
-            <td>${getSpecificTeacher(subject)}</td>
-            <td><button onclick="rateTeacher(${index})">Rate</button></td>
+                <td>${name}</td>
+                <td>${semester}</td>
+                <td>${subject}</td>
+                <td>${getSpecificTeacher(subject)}</td>
+                <td><button onclick="rateTeacher(${index})">Rate</button></td>
             </tr>
         `;
     });
