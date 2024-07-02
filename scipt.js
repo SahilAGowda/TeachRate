@@ -1,10 +1,13 @@
 // Function to generate random teacher names
-function getRandomTeacher() {
-    const teachers = [
-        "Dr. Smith", "Prof. Johnson", "Ms. Williams", "Mr. Brown", "Dr. Jones",
-        "Prof. Davis", "Ms. Miller", "Mr. Wilson", "Dr. Moore", "Prof. Taylor"
-    ];
-    return teachers[Math.floor(Math.random() * teachers.length)];
+function getSpecificTeacher(subject) {
+    const teacherMap = {
+        "Analysis and Design of Algorithm": "Dr. Krishna Murthy Sir",
+        "Microcontroller": "Pothi Reddy Sir",
+        "DBMS": "Rafiq Sir",
+        "Graph Theory": "Ravi Sir",
+        "Biology": "Varshini Mam"
+    };
+    return teacherMap[subject] || "Unknown Teacher";
 }
 
 // Function to generate the table
@@ -19,7 +22,7 @@ function generateTable(event) {
         return;
     }
 
-    const subjects = ["Mathematics", "Science", "English", "History", "Computer Science"];
+    const subjects = ["Analysis and Design of Algorithm", "Microcontroller", "DBMS", "Graph Theory", "Biology"];
     
     let tableHtml = `
         <table>
@@ -38,11 +41,11 @@ function generateTable(event) {
     subjects.forEach((subject, index) => {
         tableHtml += `
             <tr>
-                <td>${name}</td>
-                <td>${semester}</td>
-                <td>${subject}</td>
-                <td>${getRandomTeacher()}</td>
-                <td><button onclick="rateTeacher(${index})">Rate</button></td>
+            <td>${name}</td>
+            <td>${semester}</td>
+            <td>${subject}</td>
+            <td>${getSpecificTeacher(subject)}</td>
+            <td><button onclick="rateTeacher(${index})">Rate</button></td>
             </tr>
         `;
     });
@@ -119,7 +122,7 @@ function generateTable(event) {
                 </script>
             </head>
             <body>
-                <h1>Student-Teacher Assignment</h1>
+                <h1>Teacher List</h1>
                 ${tableHtml}
             </body>
         </html>
